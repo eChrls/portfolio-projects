@@ -51,11 +51,80 @@ html {
 
 /* Code blocks styling */
 .prose pre {
-    @apply bg-slate-900 border border-slate-700 rounded-xl;
+    background: #181f2a;
+    border: 1.5px solid #334155;
+    border-radius: 1rem;
+    padding: 1.2em 1.5em;
+    font-size: 1.05em;
+    overflow-x: auto;
+    margin-bottom: 1.5em;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
 }
 
 .prose code {
-    @apply bg-slate-800 px-2 py-1 rounded text-blue-300;
+    background: #232946;
+    color: #7dd3fc;
+    padding: 0.2em 0.5em;
+    border-radius: 0.4em;
+    font-size: 1em;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+}
+
+/* Mejorar títulos y listas markdown */
+.prose h1, .prose h2, .prose h3, .prose h4 {
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #fbbf24 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+.prose ul, .prose ol {
+    padding-left: 2em;
+    margin-bottom: 1.2em;
+}
+.prose li {
+    margin-bottom: 0.4em;
+    line-height: 1.7;
+}
+.prose blockquote {
+    border-left: 4px solid #60a5fa;
+    background: #1e293b;
+    color: #a5b4fc;
+    padding: 1em 1.5em;
+    border-radius: 0.7em;
+    margin: 1.5em 0;
+    font-style: italic;
+}
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+}
+.prose th, .prose td {
+    border: 1px solid #334155;
+    padding: 0.6em 1em;
+    text-align: left;
+}
+.prose th {
+    background: #334155;
+    color: #fbbf24;
+}
+.prose img {
+    max-width: 100%;
+    border-radius: 0.7em;
+    margin: 1em 0;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
+}
+.prose a {
+    color: #38bdf8;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.prose a:hover {
+    color: #fbbf24;
 }
 
 /* Custom alerts */

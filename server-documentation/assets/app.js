@@ -45,7 +45,7 @@ const CHAPTERS = [
         title: '6. Despliegue Portfolio',
         subtitle: 'Apache, PHP 8.3, aplicación web',
         icon: 'fas fa-globe',
-        file: 'chapters/06-portfolio-deploy.md',
+        file: 'chapters/06-portfolio-deploy-new.md',
         completed: true
     },
     {
@@ -70,6 +70,14 @@ const CHAPTERS = [
         subtitle: 'Errores, decisiones y mejores prácticas',
         icon: 'fas fa-graduation-cap',
         file: 'chapters/09-lessons-learned.md',
+        completed: true
+    },
+    {
+        id: 'future-improvements',
+        title: '10. Mejoras Futuras',
+        subtitle: 'Ideas, roadmap y siguientes pasos',
+        icon: 'fas fa-lightbulb',
+        file: 'chapters/10-future-improvements.md',
         completed: false
     }
 ];
