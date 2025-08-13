@@ -1,3 +1,35 @@
+/* Modo claro: light-theme */
+body.light-theme {
+    background: linear-gradient(135deg, #f8fafc 0%, #dbeafe 100%) !important;
+    color: #222 !important;
+}
+
+.light-theme .prose {
+    color: #222;
+}
+
+.light-theme .prose h1, .light-theme .prose h2, .light-theme .prose h3, .light-theme .prose h4 {
+    -webkit-text-fill-color: initial;
+    background: none;
+    color: #1e293b;
+}
+
+.light-theme .prose code {
+    background: #f1f5f9;
+    color: #2563eb;
+}
+
+.light-theme .prose pre {
+    background: #f1f5f9;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+.light-theme .prose blockquote {
+    background: #e0e7ef;
+    color: #334155;
+    border-left: 4px solid #60a5fa;
+}
 /* Estilos personalizados para la documentación */
 
 /* Smooth scrolling */
