@@ -32,7 +32,7 @@
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
                     <i class="fab fa-raspberry-pi text-orange-500 text-3xl"></i>
-                    <div>
+                    <div id="headerTitle" class="cursor-pointer select-none" tabindex="0" aria-label="Volver al inicio" title="Volver al inicio">
                         <h1 class="text-2xl font-bold bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">
                             Servidor Orange Pi 5 Plus
                         </h1>
@@ -40,10 +40,10 @@
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <button id="themeToggle" class="p-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 transition-colors">
-                        <i class="fas fa-moon"></i>
+                    <button id="themeToggle" class="p-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 transition-colors" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
+                        <i id="themeIcon" class="fas fa-moon"></i>
                     </button>
-                    <button id="searchToggle" class="p-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 transition-colors">
+                    <button id="searchToggle" class="p-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 transition-colors" aria-label="Buscar" title="Buscar">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -134,7 +134,7 @@
                 <!-- Chapter Content -->
                 <div id="chapterContent" class="hidden">
                     <div class="flex items-center mb-6">
-                        <button id="backButton" class="mr-4 p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors">
+                        <button id="backButton" class="mr-4 p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" aria-label="Volver al índice" title="Volver al índice">
                             <i class="fas fa-arrow-left"></i>
                         </button>
                         <div>
@@ -145,14 +145,14 @@
                     
                     <!-- Chapter navigation -->
                     <div class="flex items-center justify-between mb-6 p-4 bg-black/20 rounded-xl border border-blue-500/30">
-                        <button id="prevChapter" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors">
+                        <button id="prevChapter" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Capítulo anterior" title="Capítulo anterior">
                             <i class="fas fa-chevron-left"></i>
                             <span>Anterior</span>
                         </button>
                         <div class="text-center">
                             <span id="chapterNumber" class="text-slate-400"></span>
                         </div>
-                        <button id="nextChapter" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors">
+                        <button id="nextChapter" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Capítulo siguiente" title="Capítulo siguiente">
                             <span>Siguiente</span>
                             <i class="fas fa-chevron-right"></i>
                         </button>

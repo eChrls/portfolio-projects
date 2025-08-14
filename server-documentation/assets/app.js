@@ -90,7 +90,36 @@ let searchVisible = false;
 // Inicialización de la aplicación
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
+    // Header clickable para volver al inicio
+    const headerTitle = document.getElementById('headerTitle');
+    if (headerTitle) {
+        headerTitle.addEventListener('click', showWelcomeScreen);
+        headerTitle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') showWelcomeScreen();
+        });
+    }
+    // Inicializar modo oscuro correctamente
+    setupThemeOnLoad();
 });
+
+function setupThemeOnLoad() {
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode !== null) {
+        darkMode = savedDarkMode === 'true';
+    }
+    applyTheme();
+}
+
+function applyTheme() {
+    const themeIcon = document.getElementById('themeIcon');
+    if (darkMode) {
+        document.body.classList.remove('light-theme');
+        if (themeIcon) themeIcon.className = 'fas fa-moon';
+    } else {
+        document.body.classList.add('light-theme');
+        if (themeIcon) themeIcon.className = 'fas fa-sun';
+    }
+}
 
 function initializeApp() {
     setupNavigation();
@@ -109,12 +138,11 @@ function initializeApp() {
 function setupNavigation() {
     const navigationMenu = document.getElementById('navigationMenu');
     navigationMenu.innerHTML = '';
-    
     CHAPTERS.forEach((chapter, index) => {
         const navItem = document.createElement('li');
         navItem.innerHTML = `
-            <div class="nav-item ${chapter.completed ? 'chapter-completed' : 'chapter-pending'}" data-chapter="${chapter.id}">
-                <i class="${chapter.icon}"></i>
+            <div class="nav-item flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-blue-600/20 hover:text-blue-300 transition-all duration-200 cursor-pointer ${chapter.completed ? 'chapter-completed text-green-400' : 'chapter-pending text-slate-500'}" data-chapter="${chapter.id}">
+                <i class="${chapter.icon} w-5 text-center mr-3"></i>
                 <div class="flex-1">
                     <div class="font-medium">${chapter.title}</div>
                     <div class="text-xs text-slate-400">${chapter.subtitle}</div>
@@ -140,23 +168,27 @@ function setupEventListeners() {
             loadChapter(chapterId);
         }
     });
-    
     // Botón volver
-    document.getElementById('backButton').addEventListener('click', showWelcomeScreen);
-    
+    const backBtn = document.getElementById('backButton');
+    if (backBtn) backBtn.addEventListener('click', showWelcomeScreen);
     // Toggle tema
-    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-    
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) themeBtn.addEventListener('click', function() {
+        darkMode = !darkMode;
+        localStorage.setItem('darkMode', darkMode);
+        applyTheme();
+    });
     // Toggle búsqueda
-    document.getElementById('searchToggle').addEventListener('click', toggleSearch);
-    
+    const searchBtn = document.getElementById('searchToggle');
+    if (searchBtn) searchBtn.addEventListener('click', toggleSearch);
     // Navegación entre capítulos
-    document.getElementById('prevChapter').addEventListener('click', goToPreviousChapter);
-    document.getElementById('nextChapter').addEventListener('click', goToNextChapter);
-    
+    const prevBtn = document.getElementById('prevChapter');
+    if (prevBtn) prevBtn.addEventListener('click', goToPreviousChapter);
+    const nextBtn = document.getElementById('nextChapter');
+    if (nextBtn) nextBtn.addEventListener('click', goToNextChapter);
     // Búsqueda
-    document.getElementById('searchInput').addEventListener('input', performSearch);
-    
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.addEventListener('input', performSearch);
     // Responsive sidebar
     setupResponsiveSidebar();
 }
@@ -244,11 +276,11 @@ async function loadMarkdownContent(filePath) {
     } catch (error) {
         console.error('Error cargando contenido:', error);
         contentContainer.innerHTML = `
-            <div class="alert alert-danger">
+            <div class="p-4 rounded-xl border-l-4 mb-6 bg-red-900/20 border-red-500 text-red-300">
                 <i class="fas fa-exclamation-triangle mr-2"></i>
                 <strong>Error cargando contenido:</strong> ${error.message}
                 <br><br>
-                <button onclick="loadMarkdownContent('${filePath}')" class="btn btn-secondary mt-2">
+                <button onclick="loadMarkdownContent('${filePath}')" class="px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-slate-700 hover:bg-slate-600 text-slate-300 mt-2">
                     <i class="fas fa-redo mr-2"></i>Reintentar
                 </button>
             </div>
@@ -307,20 +339,7 @@ function updateProgress() {
     document.getElementById('progressBar').style.width = `${percentage}%`;
 }
 
-function toggleTheme() {
-    darkMode = !darkMode;
-    const themeIcon = document.querySelector('#themeToggle i');
-    
-    if (darkMode) {
-        themeIcon.className = 'fas fa-moon';
-        document.body.classList.remove('light-theme');
-    } else {
-        themeIcon.className = 'fas fa-sun';
-        document.body.classList.add('light-theme');
-    }
-    
-    localStorage.setItem('darkMode', darkMode);
-}
+// toggleTheme ya no es necesario, se gestiona con applyTheme y el listener robusto
 
 function toggleSearch() {
     searchVisible = !searchVisible;
@@ -436,16 +455,14 @@ function copyToClipboard(text) {
 }
 
 function showNotification(message, type = 'info') {
-    // Implementación básica de notificaciones
+    // Implementación básica de notificaciones con Tailwind
     const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
-        type === 'success' ? 'bg-green-600' : 
-        type === 'error' ? 'bg-red-600' : 'bg-blue-600'
-    } text-white`;
+    let colorClass = 'bg-blue-600';
+    if (type === 'success') colorClass = 'bg-green-600';
+    if (type === 'error') colorClass = 'bg-red-600';
+    notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 text-white ${colorClass}`;
     notification.textContent = message;
-    
     document.body.appendChild(notification);
-    
     setTimeout(() => {
         notification.remove();
     }, 3000);

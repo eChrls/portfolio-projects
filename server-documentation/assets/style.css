@@ -56,30 +56,30 @@ html {
 }
 
 /* Navigation items */
-.nav-item {
+/* .nav-item {
     @apply flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-blue-600/20 hover:text-blue-300 transition-all duration-200 cursor-pointer;
-}
+} */
 
-.nav-item.active {
+/* .nav-item.active {
     @apply bg-blue-600/30 text-blue-300 border-l-4 border-blue-500;
-}
+} */
 
-.nav-item i {
+/* .nav-item i {
     @apply w-5 text-center mr-3;
-}
+} */
 
 /* Chapter indicators */
-.chapter-completed {
+/* .chapter-completed {
     @apply text-green-400;
-}
+} */
 
-.chapter-current {
+/* .chapter-current {
     @apply text-blue-400;
-}
+} */
 
-.chapter-pending {
+/* .chapter-pending {
     @apply text-slate-500;
-}
+} */
 
 /* Code blocks styling */
 .prose pre {
@@ -160,42 +160,42 @@ html {
 }
 
 /* Custom alerts */
-.alert {
+/* .alert {
     @apply p-4 rounded-xl border-l-4 mb-6;
-}
+} */
 
-.alert-info {
+/* .alert-info {
     @apply bg-blue-900/20 border-blue-500 text-blue-300;
-}
+} */
 
-.alert-warning {
+/* .alert-warning {
     @apply bg-yellow-900/20 border-yellow-500 text-yellow-300;
-}
+} */
 
-.alert-success {
+/* .alert-success {
     @apply bg-green-900/20 border-green-500 text-green-300;
-}
+} */
 
-.alert-danger {
+/* .alert-danger {
     @apply bg-red-900/20 border-red-500 text-red-300;
-}
+} */
 
 /* Button styles */
-.btn {
+/* .btn {
     @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
-}
+} */
 
-.btn-primary {
+/* .btn-primary {
     @apply bg-blue-600 hover:bg-blue-700 text-white;
-}
+} */
 
-.btn-secondary {
+/* .btn-secondary {
     @apply bg-slate-700 hover:bg-slate-600 text-slate-300;
-}
+} */
 
-.btn-success {
+/* .btn-success {
     @apply bg-green-600 hover:bg-green-700 text-white;
-}
+} */
 
 /* Animation for content loading */
 .fade-in {
@@ -297,18 +297,18 @@ button:focus, input:focus {
 }
 
 /* Progress indicators */
-.progress-step {
+/* .progress-step {
     @apply flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium;
-}
+} */
 
-.progress-step.completed {
+/* .progress-step.completed {
     @apply bg-green-600 text-white;
-}
+} */
 
-.progress-step.current {
+/* .progress-step.current {
     @apply bg-blue-600 text-white;
-}
+} */
 
-.progress-step.pending {
+/* .progress-step.pending {
     @apply bg-slate-600 text-slate-400;
-}
+} */
