@@ -1,0 +1,314 @@
+/* Modo claro: light-theme */
+body.light-theme {
+    background: linear-gradient(135deg, #f8fafc 0%, #dbeafe 100%) !important;
+    color: #222 !important;
+}
+
+.light-theme .prose {
+    color: #222;
+}
+
+.light-theme .prose h1, .light-theme .prose h2, .light-theme .prose h3, .light-theme .prose h4 {
+    -webkit-text-fill-color: initial;
+    background: none;
+    color: #1e293b;
+}
+
+.light-theme .prose code {
+    background: #f1f5f9;
+    color: #2563eb;
+}
+
+.light-theme .prose pre {
+    background: #f1f5f9;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+.light-theme .prose blockquote {
+    background: #e0e7ef;
+    color: #334155;
+    border-left: 4px solid #60a5fa;
+}
+/* Estilos personalizados para la documentación */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.8);
+}
+
+/* Navigation items */
+/* .nav-item {
+    @apply flex items-center px-3 py-2 rounded-lg text-slate-300 hover:bg-blue-600/20 hover:text-blue-300 transition-all duration-200 cursor-pointer;
+} */
+
+/* .nav-item.active {
+    @apply bg-blue-600/30 text-blue-300 border-l-4 border-blue-500;
+} */
+
+/* .nav-item i {
+    @apply w-5 text-center mr-3;
+} */
+
+/* Chapter indicators */
+/* .chapter-completed {
+    @apply text-green-400;
+} */
+
+/* .chapter-current {
+    @apply text-blue-400;
+} */
+
+/* .chapter-pending {
+    @apply text-slate-500;
+} */
+
+/* Code blocks styling */
+.prose pre {
+    background: #181f2a;
+    border: 1.5px solid #334155;
+    border-radius: 1rem;
+    padding: 1.2em 1.5em;
+    font-size: 1.05em;
+    overflow-x: auto;
+    margin-bottom: 1.5em;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
+}
+
+.prose code {
+    background: #232946;
+    color: #7dd3fc;
+    padding: 0.2em 0.5em;
+    border-radius: 0.4em;
+    font-size: 1em;
+    font-family: 'Fira Mono', 'Consolas', monospace;
+}
+
+/* Mejorar títulos y listas markdown */
+.prose h1, .prose h2, .prose h3, .prose h4 {
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #fbbf24 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+.prose ul, .prose ol {
+    padding-left: 2em;
+    margin-bottom: 1.2em;
+}
+.prose li {
+    margin-bottom: 0.4em;
+    line-height: 1.7;
+}
+.prose blockquote {
+    border-left: 4px solid #60a5fa;
+    background: #1e293b;
+    color: #a5b4fc;
+    padding: 1em 1.5em;
+    border-radius: 0.7em;
+    margin: 1.5em 0;
+    font-style: italic;
+}
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+}
+.prose th, .prose td {
+    border: 1px solid #334155;
+    padding: 0.6em 1em;
+    text-align: left;
+}
+.prose th {
+    background: #334155;
+    color: #fbbf24;
+}
+.prose img {
+    max-width: 100%;
+    border-radius: 0.7em;
+    margin: 1em 0;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.10);
+}
+.prose a {
+    color: #38bdf8;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.prose a:hover {
+    color: #fbbf24;
+}
+
+/* Custom alerts */
+/* .alert {
+    @apply p-4 rounded-xl border-l-4 mb-6;
+} */
+
+/* .alert-info {
+    @apply bg-blue-900/20 border-blue-500 text-blue-300;
+} */
+
+/* .alert-warning {
+    @apply bg-yellow-900/20 border-yellow-500 text-yellow-300;
+} */
+
+/* .alert-success {
+    @apply bg-green-900/20 border-green-500 text-green-300;
+} */
+
+/* .alert-danger {
+    @apply bg-red-900/20 border-red-500 text-red-300;
+} */
+
+/* Button styles */
+/* .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+} */
+
+/* .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white;
+} */
+
+/* .btn-secondary {
+    @apply bg-slate-700 hover:bg-slate-600 text-slate-300;
+} */
+
+/* .btn-success {
+    @apply bg-green-600 hover:bg-green-700 text-white;
+} */
+
+/* Animation for content loading */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+    #sidebar {
+        position: fixed;
+        left: -320px;
+        top: 64px;
+        height: calc(100vh - 64px);
+        transition: left 0.3s ease-in-out;
+        z-index: 40;
+    }
+    
+    #sidebar.open {
+        left: 0;
+    }
+    
+    .sidebar-overlay {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 30;
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .prose {
+        color: black !important;
+    }
+}
+
+/* Focus states for accessibility */
+button:focus, input:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Loading spinner */
+.spinner {
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    border-top: 2px solid #3b82f6;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tooltip */
+.tooltip {
+    position: relative;
+}
+
+.tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 50;
+}
+
+/* Progress indicators */
+/* .progress-step {
+    @apply flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium;
+} */
+
+/* .progress-step.completed {
+    @apply bg-green-600 text-white;
+} */
+
+/* .progress-step.current {
+    @apply bg-blue-600 text-white;
+} */
+
+/* .progress-step.pending {
+    @apply bg-slate-600 text-slate-400;
+} */

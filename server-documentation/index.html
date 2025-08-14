@@ -1,192 +1,494 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servidor Orange Pi 5 Plus + Ubuntu Server 24.04 - Documentación</title>
-    
-    <!-- Tailwind CSS CDN -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orange Pi 5 Plus Server Documentation</title>
+    <meta
+      name="description"
+      content="Documentación técnica completa del servidor Orange Pi 5 Plus con Ubuntu Server 24.04"
+    />
+
+    <!-- Favicon - RUTAS CORREGIDAS -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/images/favicon-16x16.png"
+    />
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Prism.js para syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    
-    <!-- Marked.js para renderizar markdown -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
-    <!-- Font Awesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Favicon actualizado -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    <!-- CSS personalizado -->
-    <link rel="stylesheet" href="assets/style.css">
-</head>
-<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white min-h-screen">
-    
+
+    <!-- CSS personalizado - RUTA CORREGIDA -->
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body class="bg-slate-900 text-slate-100 min-h-screen">
     <!-- Header -->
-    <header class="bg-black/30 backdrop-blur-sm border-b border-blue-500/30 sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <i class="fab fa-raspberry-pi text-orange-500 text-3xl"></i>
-                    <div id="headerTitle" class="cursor-pointer select-none" tabindex="0" aria-label="Volver al inicio" title="Volver al inicio">
-                        <h1 class="text-2xl font-bold bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">
-                            Servidor Orange Pi 5 Plus
-                        </h1>
-                        <p class="text-slate-300 text-sm">Ubuntu Server 24.04 - Guía de Implementación</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button id="themeToggle" class="p-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 transition-colors" aria-label="Cambiar modo claro/oscuro" title="Cambiar modo claro/oscuro">
-                        <i id="themeIcon" class="fas fa-moon"></i>
-                    </button>
-                    <button id="searchToggle" class="p-2 rounded-lg bg-blue-600/20 hover:bg-blue-600/40 transition-colors" aria-label="Buscar" title="Buscar">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
+    <header
+      class="fixed top-0 left-0 right-0 bg-slate-800/80 backdrop-blur-md border-b border-slate-700 z-50"
+    >
+      <div
+        class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <!-- Logo/Título clickeable -->
+        <div
+          id="headerTitle"
+          class="flex items-center space-x-3 cursor-pointer"
+          tabindex="0"
+          role="button"
+          aria-label="Ir al inicio"
+        >
+          <div
+            class="w-10 h-10 bg-gradient-to-br from-orange-500 to-blue-600 rounded-lg flex items-center justify-center"
+          >
+            <i class="fas fa-server text-white text-lg"></i>
+          </div>
+          <div>
+            <h1
+              class="text-xl font-bold bg-gradient-to-r from-orange-400 to-blue-500 bg-clip-text text-transparent"
+            >
+              Orange Pi 5 Plus
+            </h1>
+            <p class="text-xs text-slate-400">Server Documentation</p>
+          </div>
         </div>
+
+        <!-- Controles del header -->
+        <div class="flex items-center space-x-4">
+          <!-- Botón de búsqueda -->
+          <button
+            id="searchToggle"
+            class="p-2 text-slate-400 hover:text-white transition-colors"
+            aria-label="Buscar"
+            title="Buscar (Ctrl+K)"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+
+          <!-- Selector de idioma -->
+          <div class="relative">
+            <button
+              id="languageToggle"
+              class="flex items-center space-x-2 px-3 py-2 text-slate-400 hover:text-white transition-colors"
+            >
+              <i class="fas fa-globe"></i>
+              <span id="currentLanguage">ES</span>
+              <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div
+              id="languageMenu"
+              class="absolute right-0 mt-2 w-32 bg-slate-800 rounded-lg shadow-xl border border-slate-700 hidden z-10"
+            >
+              <button
+                onclick="changeLanguage('es')"
+                class="w-full px-4 py-2 text-left text-slate-300 hover:bg-slate-700 rounded-t-lg transition-colors"
+              >
+                <i class="fas fa-flag mr-2"></i>Español
+              </button>
+              <button
+                onclick="changeLanguage('en')"
+                class="w-full px-4 py-2 text-left text-slate-300 hover:bg-slate-700 rounded-b-lg transition-colors"
+              >
+                <i class="fas fa-flag mr-2"></i>English
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón de tema -->
+          <button
+            id="themeToggle"
+            class="p-2 text-slate-400 hover:text-white transition-colors"
+            aria-label="Cambiar tema"
+            title="Cambiar tema"
+          >
+            <i id="themeIcon" class="fas fa-moon"></i>
+          </button>
+
+          <!-- Botón menú móvil -->
+          <button
+            id="mobileMenuToggle"
+            class="md:hidden p-2 text-slate-400 hover:text-white transition-colors"
+            aria-label="Menú"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
     </header>
 
-    <!-- Main Container -->
-    <div class="flex">
-        
-        <!-- Sidebar -->
-        <aside id="sidebar" class="w-80 bg-black/20 backdrop-blur-sm border-r border-blue-500/30 min-h-screen sticky top-16 overflow-y-auto">
-            <div class="p-6">
-                
-                <!-- Search -->
-                <div id="searchContainer" class="mb-6 hidden">
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        placeholder="Buscar en la documentación..."
-                        class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg focus:border-blue-500 focus:outline-none"
-                    >
-                </div>
-
-                <!-- Progress -->
-                <div class="mb-6">
-                    <h3 class="text-sm font-semibold text-slate-400 mb-2">PROGRESO DEL PROYECTO</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between text-xs">
-                            <span>Completado</span>
-                            <span id="progressPercent">85%</span>
-                        </div>
-                        <div class="w-full bg-slate-700 rounded-full h-2">
-                            <div id="progressBar" class="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation -->
-                <nav>
-                    <h3 class="text-sm font-semibold text-slate-400 mb-4">CONTENIDO</h3>
-                    <ul class="space-y-1" id="navigationMenu">
-                        <!-- Se genera dinámicamente -->
-                    </ul>
-                </nav>
+    <!-- Overlay de búsqueda -->
+    <div
+      id="searchOverlay"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-60 hidden"
+    >
+      <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-slate-800 rounded-xl shadow-2xl w-full max-w-2xl">
+          <div class="p-6">
+            <div class="flex items-center space-x-4 mb-4">
+              <i class="fas fa-search text-slate-400"></i>
+              <input
+                id="searchInput"
+                type="text"
+                placeholder="Buscar en capítulos..."
+                class="flex-1 bg-transparent text-white placeholder-slate-400 focus:outline-none text-lg"
+              />
+              <button
+                onclick="closeSearch()"
+                class="text-slate-400 hover:text-white"
+              >
+                <i class="fas fa-times"></i>
+              </button>
             </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="flex-1 p-8">
-            <div class="max-w-4xl mx-auto">
-                
-                <!-- Welcome Screen -->
-                <div id="welcomeScreen" class="text-center py-16">
-                    <div class="mb-8">
-                        <i class="fab fa-raspberry-pi text-orange-500 text-8xl mb-4"></i>
-                        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">
-                            Servidor Orange Pi 5 Plus
-                        </h2>
-                        <p class="text-xl text-slate-300 mb-8">
-                            Guía completa de implementación con Ubuntu Server 24.04
-                        </p>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-3 gap-6 mb-8">
-                        <div class="bg-black/20 p-6 rounded-xl border border-blue-500/30">
-                            <i class="fas fa-server text-blue-400 text-3xl mb-3"></i>
-                            <h3 class="text-lg font-semibold mb-2">Infraestructura</h3>
-                            <p class="text-slate-400">Hardware ARM64, Ubuntu Server, Docker, servicios 24/7</p>
-                        </div>
-                        <div class="bg-black/20 p-6 rounded-xl border border-blue-500/30">
-                            <i class="fas fa-code text-green-400 text-3xl mb-3"></i>
-                            <h3 class="text-lg font-semibold mb-2">Desarrollo</h3>
-                            <p class="text-slate-400">Stack PHP 8.3, Java 17, Node.js, MySQL 8.0</p>
-                        </div>
-                        <div class="bg-black/20 p-6 rounded-xl border border-blue-500/30">
-                            <i class="fas fa-shield-alt text-purple-400 text-3xl mb-3"></i>
-                            <h3 class="text-lg font-semibold mb-2">Seguridad</h3>
-                            <p class="text-slate-400">SSH, SSL, Fail2Ban, monitorización continua</p>
-                        </div>
-                    </div>
-
-                    <p class="text-slate-400">
-                        Selecciona un capítulo del menú lateral para comenzar la exploración
-                    </p>
-                </div>
-
-                <!-- Chapter Content -->
-                <div id="chapterContent" class="hidden">
-                    <div class="flex items-center mb-6">
-                        <button id="backButton" class="mr-4 p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" aria-label="Volver al índice" title="Volver al índice">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
-                        <div>
-                            <h2 id="chapterTitle" class="text-3xl font-bold mb-2"></h2>
-                            <p id="chapterSubtitle" class="text-slate-400"></p>
-                        </div>
-                    </div>
-                    
-                    <!-- Chapter navigation -->
-                    <div class="flex items-center justify-between mb-6 p-4 bg-black/20 rounded-xl border border-blue-500/30">
-                        <button id="prevChapter" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Capítulo anterior" title="Capítulo anterior">
-                            <i class="fas fa-chevron-left"></i>
-                            <span>Anterior</span>
-                        </button>
-                        <div class="text-center">
-                            <span id="chapterNumber" class="text-slate-400"></span>
-                        </div>
-                        <button id="nextChapter" class="flex items-center space-x-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Capítulo siguiente" title="Capítulo siguiente">
-                            <span>Siguiente</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Markdown content container -->
-                    <article id="markdownContent" class="prose prose-invert prose-blue max-w-none">
-                        <!-- Content loaded here -->
-                    </article>
-                </div>
-            </div>
-        </main>
+            <div
+              id="searchResults"
+              class="space-y-2 max-h-96 overflow-y-auto"
+            ></div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-black/30 backdrop-blur-sm border-t border-blue-500/30 py-8 mt-16">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-slate-400">
-                © 2025 Proyecto Servidor Orange Pi 5 Plus - 
-                <span class="text-blue-400">José Carlos Torralvo</span>
-            </p>
-            <div class="flex justify-center space-x-4 mt-4">
-                <a href="https://github.com/eChrls/portfolio-projects/tree/main/server-documentation" class="text-slate-400 hover:text-blue-400 transition-colors">
-                    <i class="fab fa-github text-xl"></i>
-                </a>
-                <a href="www.linkedin.com/in/jose-carlos-torralvo" class="text-slate-400 hover:text-blue-400 transition-colors">
-                    <i class="fab fa-linkedin text-xl"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+    <div class="flex pt-16">
+      <!-- Sidebar -->
+      <aside
+        id="sidebar"
+        class="w-80 bg-slate-800/50 border-r border-slate-700 h-screen sticky top-16 overflow-y-auto"
+      >
+        <div class="p-6">
+          <nav>
+            <h2
+              class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4"
+              data-text="contenido"
+            >
+              Contenido
+            </h2>
+            <ul id="navigationMenu" class="space-y-2">
+              <!-- Los capítulos se cargarán dinámicamente -->
+            </ul>
+          </nav>
 
-    <!-- JavaScript -->
+          <!-- Progreso del curso -->
+          <div class="mt-8 p-4 bg-slate-700/30 rounded-lg">
+            <h3
+              class="text-sm font-medium text-slate-300 mb-2"
+              data-text="progreso"
+            >
+              Progreso
+            </h3>
+            <div class="w-full bg-slate-700 rounded-full h-2">
+              <div
+                id="progressBar"
+                class="bg-gradient-to-r from-orange-500 to-blue-600 h-2 rounded-full transition-all duration-300"
+                style="width: 90%"
+              ></div>
+            </div>
+            <p class="text-xs text-slate-400 mt-2" data-text="completados">
+              9 de 10 capítulos completados
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Contenido principal -->
+      <main class="flex-1 max-w-none">
+        <!-- Pantalla de bienvenida -->
+        <div id="welcomeScreen" class="p-8">
+          <div class="max-w-6xl mx-auto">
+            <!-- Hero Section -->
+            <div class="text-center mb-12">
+              <div
+                class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-500 to-blue-600 rounded-2xl mb-6 shadow-xl"
+              >
+                <i class="fas fa-server text-white text-2xl"></i>
+              </div>
+              <h1
+                class="text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 via-blue-500 to-purple-600 bg-clip-text text-transparent leading-tight"
+              >
+                <span data-text="tituloServidor"
+                  >Servidor Orange Pi 5 Plus</span
+                >
+              </h1>
+              <p
+                class="text-xl text-slate-300 mb-8 mt-2"
+                data-text="descripcionHero"
+              >
+                Guía completa de implementación con Ubuntu Server 24.04. Desde
+                la instalación hasta el despliegue de servicios profesionales.
+              </p>
+              <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <span
+                  class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full"
+                  >ARM64</span
+                >
+                <span
+                  class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full"
+                  >Ubuntu 24.04</span
+                >
+                <span
+                  class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full"
+                  >Docker</span
+                >
+                <span
+                  class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full"
+                  >SSL/TLS</span
+                >
+              </div>
+            </div>
+
+            <!-- Carrusel de imágenes -->
+            <div id="imageCarousel" class="carrusel-container mb-12">
+              <!-- El carrusel se creará dinámicamente -->
+            </div>
+
+            <!-- Cards de categorías - CON FLEX CORREGIDO -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+              <!-- Infraestructura -->
+              <div
+                class="category-card bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-orange-500/50 transition-all duration-300 cursor-pointer"
+                onclick="filterByCategory('infraestructura')"
+              >
+                <div
+                  class="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4"
+                >
+                  <i class="fas fa-microchip text-orange-400 text-xl"></i>
+                </div>
+                <h3
+                  class="text-xl font-semibold mb-2"
+                  data-text="infraestructura"
+                >
+                  Infraestructura
+                </h3>
+                <p class="text-slate-400 mb-4" data-text="tresCapitulos">
+                  3 capítulos
+                </p>
+                <p
+                  class="text-sm text-slate-300 mb-4"
+                  data-text="descripcionInfraestructura"
+                >
+                  Hardware ARM64, Ubuntu Server, Docker, servicios 24/7 con alta
+                  disponibilidad
+                </p>
+                <button
+                  class="mt-auto text-orange-400 hover:text-orange-300 transition-colors text-sm font-medium"
+                  data-text="verHardware"
+                >
+                  Ver especificaciones hardware →
+                </button>
+              </div>
+
+              <!-- Desarrollo -->
+              <div
+                class="category-card bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-blue-500/50 transition-all duration-300 cursor-pointer"
+                onclick="filterByCategory('desarrollo')"
+              >
+                <div
+                  class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4"
+                >
+                  <i class="fab fa-docker text-blue-400 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2" data-text="desarrollo">
+                  Desarrollo
+                </h3>
+                <p class="text-slate-400 mb-4" data-text="cuatroCapitulos">
+                  4 capítulos
+                </p>
+                <p
+                  class="text-sm text-slate-300 mb-4"
+                  data-text="descripcionDesarrollo"
+                >
+                  Stack PHP 8.3, Java 17, Node.js, MySQL 8.0 con optimizaciones
+                  específicas
+                </p>
+                <button
+                  class="mt-auto text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
+                  data-text="verDocker"
+                >
+                  Ver servicios Docker →
+                </button>
+              </div>
+
+              <!-- Seguridad -->
+              <div
+                class="category-card bg-slate-800/50 rounded-xl p-6 border border-slate-700 hover:border-green-500/50 transition-all duration-300 cursor-pointer"
+                onclick="filterByCategory('seguridad')"
+              >
+                <div
+                  class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4"
+                >
+                  <i class="fas fa-shield-alt text-green-400 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2" data-text="seguridad">
+                  Seguridad
+                </h3>
+                <p class="text-slate-400 mb-4" data-text="tresCapitulos">
+                  3 capítulos
+                </p>
+                <p
+                  class="text-sm text-slate-300 mb-4"
+                  data-text="descripcionSeguridad"
+                >
+                  SSH hardening, SSL/TLS, Fail2Ban, monitorización continua y
+                  alertas
+                </p>
+                <button
+                  class="mt-auto text-green-400 hover:text-green-300 transition-colors text-sm font-medium"
+                  data-text="verSeguridad"
+                >
+                  Ver configuración de red y seguridad →
+                </button>
+              </div>
+            </div>
+
+            <!-- Información del proyecto -->
+            <div class="bg-slate-800/30 rounded-xl p-8 border border-slate-700">
+              <h2 class="text-2xl font-bold mb-6" data-text="infoProyecto">
+                Información del proyecto
+              </h2>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-orange-400 mb-2">
+                    ~45 min
+                  </div>
+                  <div class="text-slate-400 text-sm" data-text="lectura">
+                    lectura
+                  </div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-blue-400 mb-2">10</div>
+                  <div class="text-slate-400 text-sm" data-text="capitulos">
+                    capítulos
+                  </div>
+                </div>
+                <div class="text-center">
+                  <div
+                    class="text-3xl font-bold text-green-400 mb-2"
+                    data-text="intermedio"
+                  >
+                    Intermedio
+                  </div>
+                  <div class="text-slate-400 text-sm" data-text="nivel">
+                    nivel
+                  </div>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-purple-400 mb-2">
+                    100%
+                  </div>
+                  <div class="text-slate-400 text-sm" data-text="practico">
+                    práctico
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Instrucciones de navegación -->
+            <div class="text-center mt-12 space-y-4">
+              <p class="text-lg text-slate-300" data-text="seleccionarCapitulo">
+                Selecciona un capítulo del menú lateral para comenzar la
+                exploración
+              </p>
+              <div
+                class="flex flex-wrap justify-center gap-6 text-sm text-slate-400"
+              >
+                <div class="flex items-center space-x-2">
+                  <kbd class="px-2 py-1 bg-slate-700 rounded text-xs"
+                    >Ctrl + K</kbd
+                  >
+                  <span data-text="usarCtrlK">para buscar</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <kbd class="px-2 py-1 bg-slate-700 rounded text-xs">← →</kbd>
+                  <span data-text="usarFlechas">para navegar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido del capítulo -->
+        <div id="chapterContent" class="hidden">
+          <!-- Header del capítulo -->
+          <div class="bg-slate-800/50 border-b border-slate-700 p-6">
+            <div class="max-w-4xl mx-auto">
+              <button
+                id="backButton"
+                class="inline-flex items-center text-slate-400 hover:text-white mb-4 transition-colors"
+              >
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span data-text="volver">Volver</span>
+              </button>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h1 id="chapterTitle" class="text-3xl font-bold mb-2"></h1>
+                  <p id="chapterSubtitle" class="text-slate-400"></p>
+                </div>
+                <div class="text-right">
+                  <p id="chapterProgress" class="text-sm text-slate-500"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido del capítulo -->
+          <div class="p-6">
+            <div
+              class="max-w-4xl mx-auto prose prose-lg prose-invert"
+              id="markdownContent"
+            >
+              <!-- Contenido markdown se carga aquí -->
+            </div>
+          </div>
+
+          <!-- Navegación entre capítulos -->
+          <div class="bg-slate-800/50 border-t border-slate-700 p-6">
+            <div class="max-w-4xl mx-auto flex justify-between items-center">
+              <button id="prevChapter" class="btn btn-secondary hidden">
+                <i class="fas fa-chevron-left mr-2"></i>
+                <span data-text="anterior">Anterior</span>
+              </button>
+              <div class="flex-1"></div>
+              <button id="nextChapter" class="btn btn-primary hidden">
+                <span data-text="siguiente">Siguiente</span>
+                <i class="fas fa-chevron-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Overlay para móvil -->
+    <div
+      id="mobileOverlay"
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden md:hidden"
+    ></div>
+
+    <!-- Incluir Markdown parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- JavaScript principal - RUTA CORREGIDA -->
     <script src="assets/app.js"></script>
-    
-</body>
+  </body>
 </html>
